@@ -34,6 +34,8 @@ const copyLabelMotion = {
   transition: { duration: feedback.duration, ease },
 };
 
+import { Logo } from '../components/ui/Logo';
+
 export default function Profile() {
   const { username } = useParams();
   const [profile, setProfile] = useState(null);
@@ -105,7 +107,11 @@ export default function Profile() {
           <div style={styles.notFoundIcon}>🫥</div>
           <h2 style={styles.notFoundTitle}>Not found</h2>
           <p style={styles.notFoundSub}>
-            No one goes by <span style={{ fontWeight: 600, color: 'var(--text)' }}>@{username}</span> on Pingless.
+            No one goes by <span style={{ fontWeight: 600, color: 'var(--text)' }}>@{username}</span> on{' '}
+            <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px' }}>
+              <Logo size={16} />
+              Pingless
+            </span>.
           </p>
           <Link to="/" style={styles.btnPrimary}>
             Create your workspace →
@@ -136,7 +142,7 @@ export default function Profile() {
       <Navbar
         logo={
           <Link to="/" style={styles.navLogo}>
-            <span style={styles.logoDot} />
+            <Logo size={24} />
             <span style={styles.logoText}>Pingless.</span>
           </Link>
         }
@@ -214,7 +220,12 @@ export default function Profile() {
               </span>
             )}
             <Link to="/" className="profile-footer-link" style={styles.footerCta}>
-              Create your Pingless workspace →
+              Create your{' '}
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: '4px', verticalAlign: 'middle' }}>
+                <Logo size={18} />
+                Pingless
+              </span>{' '}
+              workspace →
             </Link>
           </motion.div>
         </div>
@@ -244,13 +255,6 @@ const styles = {
     alignItems: 'center',
     gap: 'var(--space-2)',
     textDecoration: 'none',
-  },
-  logoDot: {
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    background: 'var(--accent)',
-    display: 'inline-block',
   },
   logoText: {
     fontWeight: 700,

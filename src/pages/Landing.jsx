@@ -40,6 +40,8 @@ const TESTIMONIALS = [
 
 const ease = [0.25, 0.1, 0.25, 1];
 
+import { Logo } from '../components/ui/Logo';
+
 export default function Landing() {
   const { user, loading, login } = useAuth();
   const navigate = useNavigate();
@@ -53,7 +55,7 @@ export default function Landing() {
       <Navbar
         logo={
           <div style={navLogo}>
-            <span style={logoDot} />
+            <Logo size={24} />
             <span style={logoText}>Pingless.</span>
           </div>
         }
@@ -249,7 +251,7 @@ export default function Landing() {
       <footer style={footer}>
         <div className="landing-wrap" style={footerInner}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 'var(--space-2)' }}>
-            <span style={{ ...logoDot, width: '7px', height: '7px', background: 'var(--text-3)' }} />
+            <Logo size={18} style={{ opacity: 0.8 }} />
             <span style={{ ...logoText, fontSize: '14px', color: 'var(--text-3)' }}>Pingless.</span>
           </div>
           <span style={footerNote}>Async by design · Free forever</span>
@@ -296,14 +298,7 @@ function GoogleIcon() {
 }
 
 const navLogo = { display: 'flex', alignItems: 'center', gap: 'var(--space-2)' };
-const logoDot = {
-  width: '8px',
-  height: '8px',
-  borderRadius: '50%',
-  background: 'var(--accent)',
-  display: 'inline-block',
-  flexShrink: 0,
-};
+
 const logoText = {
   fontWeight: 700,
   fontSize: '16px',

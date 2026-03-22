@@ -16,6 +16,7 @@
   --bg-sunken: #e8e7e3;
   --surface: #ffffff;
   --surface-raised: #fafaf8;
+  --logo-url: url('/LogoLightMode.png');
 
   --text: #111111;
   --text-2: #555555;
@@ -110,6 +111,7 @@
   --bg-sunken: #1a1918;
   --surface: #121110;
   --surface-raised: #1e1d1c;
+  --logo-url: url('/LogoDarkMode.png');
 
   --text: #f5f4f0;
   --text-2: #a19f9a;
@@ -158,6 +160,7 @@
     --bg-sunken: #1a1918;
     --surface: #121110;
     --surface-raised: #1e1d1c;
+    --logo-url: url('/LogoDarkMode.png');
 
     --text: #f5f4f0;
     --text-2: #a19f9a;

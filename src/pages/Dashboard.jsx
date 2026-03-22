@@ -155,6 +155,8 @@ function SaveWorkspaceButton({ saving, saved, onSave }) {
   );
 }
 
+import { Logo } from '../components/ui/Logo';
+
 export default function Dashboard() {
   const { logout } = useAuth();
   const navigate = useNavigate();
@@ -227,7 +229,7 @@ export default function Dashboard() {
       <Navbar
         logo={
           <Link to="/" style={styles.navLogo}>
-            <span style={styles.logoDot} />
+            <Logo size={24} />
             <span style={styles.logoText}>Pingless.</span>
           </Link>
         }
@@ -390,13 +392,6 @@ const styles = {
     alignItems: 'center',
     gap: 'var(--space-2)',
     textDecoration: 'none',
-  },
-  logoDot: {
-    width: '8px',
-    height: '8px',
-    borderRadius: '50%',
-    background: 'var(--accent)',
-    display: 'inline-block',
   },
   logoText: {
     fontWeight: 700,
