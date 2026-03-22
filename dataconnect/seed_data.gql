@@ -1,0 +1,78 @@
+mutation SeedData @transaction @auth(level: USER, insecureReason: "This is seed data and should only be run by authenticated users in a development environment.") {
+  user_insertMany(data: [
+    {
+      id: "b2d0f5e1-8f12-4a0e-9c5b-2d3e4f5a6b7c",
+      displayName: "Alice Smith",
+      email: "alice@example.com",
+      createdAt: "2023-10-27T10:00:00Z",
+      photoUrl: "https://example.com/alice.jpg"
+    },
+    {
+      id: "a1c3e5d7-9b1f-4c2e-8d0a-1b3c5d7e9f0a",
+      displayName: "Bob Johnson",
+      email: "bob@example.com",
+      createdAt: "2023-10-27T10:05:00Z",
+      photoUrl: "https://example.com/bob.jpg"
+    }
+  ])
+  profile_insertMany(data: [
+    {
+      id: "c8e2a0b1-3d4f-5e6a-7b8c-9d0e1f2a3b4c",
+      userId: "b2d0f5e1-8f12-4a0e-9c5b-2d3e4f5a6b7c",
+      name: "Alice's Awesome Page",
+      slug: "alice-awesome",
+      createdAt: "2023-10-27T10:10:00Z",
+      description: "A profile for Alice showcasing her amazing links."
+    },
+    {
+      id: "f9e1d3c5-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      userId: "a1c3e5d7-9b1f-4c2e-8d0a-1b3c5d7e9f0a",
+      name: "Bob's Best Links",
+      slug: "bob-best",
+      createdAt: "2023-10-27T10:15:00Z",
+      description: "Bob's curated collection of useful links."
+    }
+  ])
+  category_insertMany(data: [
+    {
+      id: "e4d6c8b0-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+      profileId: "c8e2a0b1-3d4f-5e6a-7b8c-9d0e1f2a3b4c",
+      name: "Productivity",
+      createdAt: "2023-10-27T10:20:00Z",
+      description: "Tools and resources for boosting productivity.",
+      orderIndex: 1
+    },
+    {
+      id: "g2h4j6k8-0l1m-2n3o-4p5q-6r7s8t9u0v1w",
+      profileId: "f9e1d3c5-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      name: "Development",
+      createdAt: "2023-10-27T10:25:00Z",
+      description: "Programming languages, frameworks, and tutorials.",
+      orderIndex: 1
+    }
+  ])
+  link_insertMany(data: [
+    {
+      id: "h5i7j9k1-2l3m-4n5o-6p7q-8r9s0t1u2v3w",
+      profileId: "c8e2a0b1-3d4f-5e6a-7b8c-9d0e1f2a3b4c",
+      categoryId: "e4d6c8b0-1a2b-3c4d-5e6f-7a8b9c0d1e2f",
+      title: "Todoist",
+      url: "https://todoist.com",
+      createdAt: "2023-10-27T10:30:00Z",
+      isPublic: true,
+      description: "A popular task management app.",
+      orderIndex: 1
+    },
+    {
+      id: "x0y2z4a6-8b9c-0d1e-2f3g-4h5i6j7k8l9m",
+      profileId: "f9e1d3c5-7a8b-9c0d-1e2f-3a4b5c6d7e8f",
+      categoryId: "g2h4j6k8-0l1m-2n3o-4p5q-6r7s8t9u0v1w",
+      title: "React Documentation",
+      url: "https://react.dev",
+      createdAt: "2023-10-27T10:35:00Z",
+      isPublic: true,
+      description: "Official documentation for the React JavaScript library.",
+      orderIndex: 1
+    }
+  ])
+}

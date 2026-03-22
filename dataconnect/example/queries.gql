@@ -1,0 +1,68 @@
+query ListPublicLinks @auth(level: PUBLIC, insecureReason: "This operation is safe to expose to the public as it only returns public links.") {
+  links(where: {isPublic: {eq: true}}, orderBy: [{createdAt: DESC}], limit: 20) {
+    id
+    title
+    url
+    description
+    createdAt
+    category {
+      name
+    }
+    profile {
+      name
+      slug
+    }
+  }
+}
+
+query GetMyProfile @auth(level: USER, insecureReason: "This operation accesses data specific to the authenticated user via 'auth.uid'.") {
+  profile(where: {user: {id: {eq_expr: "auth.uid"}}}) {
+    id
+    name
+    slug
+    profilePictureUrl
+    description
+    createdAt
+    user {
+      displayName
+      email
+    }
+    categories_on_profile(orderBy: [{orderIndex: ASC}, {name: ASC}]) {
+      id
+      name
+      description
+      orderIndex
+    }
+    links_on_profile(orderBy: [{createdAt: DESC}], limit: 10) {
+      id
+      title
+      url
+      isPublic
+      createdAt
+    }
+  }
+}
+
+mutation CreateLink($profileId: UUID!, $title: String!, $url: String!, $isPublic: Boolean!, $categoryId: UUID, $description: String, $orderIndex: Int) @auth(level: USER, insecureReason: "This operation creates a link associated with the authenticated user's profile.") {
+  link_insert(data: {
+    profileId: $profileId,
+    title: $title,
+    url: $url,
+    isPublic: $isPublic,
+    categoryId: $categoryId,
+    description: $description,
+    orderIndex: $orderIndex,
+    createdAt_expr: "request.time"
+  }) {
+    id
+  }
+}
+
+mutation RecordLinkClick($linkId: UUID!) @auth(level: PUBLIC, insecureReason: "This operation records a click on a public link and does not expose sensitive user data.") {
+  linkClick_insert(data: {
+    linkId: $linkId,
+    clickedAt_expr: "request.time"
+  }) {
+    id
+  }
+}

@@ -1,0 +1,41 @@
+type User @table {
+  displayName: String!
+  email: String!
+  createdAt: Timestamp!
+  photoUrl: String
+}
+
+type Profile @table {
+  user: User!
+  name: String!
+  slug: String!
+  createdAt: Timestamp!
+  description: String
+  profilePictureUrl: String
+}
+
+type Category @table {
+  profile: Profile!
+  name: String!
+  createdAt: Timestamp!
+  description: String
+  orderIndex: Int
+}
+
+type Link @table {
+  profile: Profile!
+  category: Category
+  title: String!
+  url: String!
+  createdAt: Timestamp!
+  isPublic: Boolean!
+  description: String
+  orderIndex: Int
+}
+
+type LinkClick @table {
+  link: Link!
+  clickedAt: Timestamp!
+  ipAddress: String
+  userAgent: String
+}
